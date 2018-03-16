@@ -29,7 +29,7 @@
 			<div class="slides">
                 <!-- title -->
 				<section>
-                    <h1>OpenLayers 4 R</h1>
+                    <h1>OpenLayers <span class="doption2">4</span> R</h1>
                     <img src="images/r-logo.png" height="200">
                     <img src="images/ol-logo.png" height="200">
                     <!--<img src="images/docker-contributors.png" height="300" style="_border: 2px solid green; border-radius: 10px;">-->
@@ -369,6 +369,7 @@ style <- stroke + fill
 <pre><code data-trim class="r">
 # Points
 require("geojsonio")
+
 cities <- us_cities[1:10, ]
 </code></pre>
 
@@ -382,7 +383,7 @@ ol() %>%
 
 <pre class="fragment"><code data-trim class="r">
 # Add as circles
-style = circle_style(radius = sqrt(cities$pop)/10)
+style <- circle_style(radius = sqrt(cities$pop)/10)
     + text_style(property = "pop")
 
 ol() %>%
@@ -416,6 +417,44 @@ style <- fill_style(color = substr(rainbow(178), 1, 7))
 ol() %>%
     add_osm_tiles() %>%
     add_features(filename = geojson_url, style = style)
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Controls</h2>
+<pre><code data-trim class="r">
+# Layer switcher
+ol() %>%
+    add_stamen_tiles(options = list(
+        name = "stamen", type = "base")) %>%
+    add_osm_tiles(options = list(
+        name = "osm", type = "base")) %>%
+    add_layer_switcher()
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">    
+# Misc
+ol() %>%
+    add_overview_map(collapsed = TRUE) %>%
+    add_scale_line(units = "metric") %>%
+    add_full_screen()
+</code></pre>
+                    </section>
+                    <section>
+                        <h2>Interactions</h2>
+<pre><code data-trim class="r">
+# Select
+ol() %>%
+    add_features(us_cities[1:10,], style = circle_style(
+        radius = 15, stroke = NULL)) %>%
+    add_select(display_properties = TRUE)
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+# Drag and drop
+ol() %>%
+    add_stamen_tiles() %>%
+    add_drag_and_drop()
 </code></pre>
                     </section>
                 </section> <!-- OL 4 R in detail end -->
