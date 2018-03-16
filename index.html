@@ -251,6 +251,7 @@ shinyApp(view, controller)
                         <h2>Features</h2>
                         <ul>
                             <li class="fragment"><span class="doption">base tiles:</span> osm, stamen, ...</li>
+                            <li class="fragment">WMS</li>
                             <li class="fragment"><span class="doption">vector tiles:</span> MVT, geojson, topojson</li>
                             <li class="fragment"><span class="doption">simple features:</span> polygons, points, lines</li>
                             <li class="fragment">markers</li>
@@ -388,12 +389,35 @@ ol() %>%
     add_stamen_tiles() %>%
     add_features(cities, style = style)
 </code></pre>
-    
-<pre class="fragment"><code data-trim class="r">
-# Polygons
-</code></pre>
                     </section>
 
+                    <section>
+                        <h2>Simple features 2 (Polygons)</h2>
+<pre><code data-trim class="r">
+# Polygons
+require("sf")
+
+nc <- st_read(system.file("gpkg/nc.gpkg", package = "sf"))
+
+class(nc) #> "sf"         "data.frame"
+</code></pre>
+                    
+<pre class="fragment"><code data-trim class="r">
+ol() %>%
+    add_stamen_tiles("watercolor") %>%
+    add_features(nc, style = stroke_style(color = "blue"))
+</code></pre>
+                        
+<pre class="fragment"><code data-trim class="r">
+# Add polyons from url
+geojson_url <- "https://openlayers.org/en/v4.6.4/examples/data/geojson/countries.geojson"
+style <- fill_style(color = substr(rainbow(178), 1, 7))
+
+ol() %>%
+    add_osm_tiles() %>%
+    add_features(filename = geojson_url, style = style)
+</code></pre>
+                    </section>
                 </section> <!-- OL 4 R in detail end -->
 
                 <!-- The end -->
