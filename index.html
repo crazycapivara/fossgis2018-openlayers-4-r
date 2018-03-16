@@ -33,34 +33,10 @@
                     <img src="images/r-logo.png" height="200">
                     <img src="images/ol-logo.png" height="200">
                     <!--<img src="images/docker-contributors.png" height="300" style="_border: 2px solid green; border-radius: 10px;">-->
-                    <h2>Seamlessly brige R and OpenLayersjs</h2>
+                    <h2>Seamlessly brige R and OpenLayers</h2>
                     <p>StefanKüthe@FOSSGIS 2018</p>
                 </section> <!-- title end -->
-                <!-- whatever -->
-                <section>
-                    <section>
-                        <h1>OpenLayers 4 R</h1>
-                    </section>
-                    <section>
-                        <h2>It´s easy to install</h2>
-<pre><code data-trim class="r">
-> require("devtools")
-
-> install_github("crazycapivara/openlayers")
-</code></pre>       
-                    </section>
-                    <section>
-                        <h2>And fun to use</h2>
-<pre><code data-trim class="r">
-> require("geojsonio")
-        
-> ol() %>%
-     add_stamen_tiles() %>%
-     add_features(us_cities) %>%
-     add_drag_and_drop()
-</code></pre>
-                    </section>                                
-                </section> <!-- whatever end -->
+                
                 <!-- htmlwidgets for R -->
                 <section>
                     <section>
@@ -163,6 +139,26 @@ HTMLWidgets.widget({
 </code></pre>
                     </section>
                 </section> <!-- htmlwidgets for R end -->
+
+                <!-- Rmarkdown -->
+                <section>
+                    <section>
+                        <h1>RMarkdown</h1>
+                        <p><a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a></p>
+                        <!--<img src="images/ol-markdown-in-rstudio.png">-->
+                        <img src="images/rmarkdown.png" height="300">
+                        <p>Gallery: <a href="https://rmarkdown.rstudio.com/gallery.html">https://rmarkdown.rstudio.com/gallery.html</a></p>
+                    </section>
+                    <section>
+                        <h2>Example 1</h2>
+                        <img src="images/rmarkdown-interactive-documents.png">
+                    </section>
+                    <section>
+                        <h2>Example 2</h2>
+                        <img src="images/rmarkdown-dashboards.png">
+                    </section>
+                </section>
+
                 <!-- magrittr -->
                 <section>
                     <section>
@@ -177,11 +173,33 @@ HTMLWidgets.widget({
                             where <code class="doption2">%>%</code> is the (main) pipe-operator.</p>
                     </section>  
                 </section>
-                <!-- Rmarkdown -->
+                
+                <!-- openlayers r package -->
                 <section>
-                    <h1>RMarkdown</h1>
-                    <img src="images/ol-markdown-in-rstudio.png">
-                </section>
+                    <section>
+                        <h1>OpenLayers 4 R</h1>
+                    </section>
+                    <section>
+                        <h2>It´s easy to install</h2>
+<pre><code data-trim class="r">
+> require("devtools")
+
+> install_github("crazycapivara/openlayers")
+</code></pre>       
+                    </section>
+                    <section>
+                        <h2>And fun to use</h2>
+<pre><code data-trim class="r">
+> require("geojsonio")
+        
+> ol() %>%
+     add_stamen_tiles() %>%
+     add_features(us_cities) %>%
+     add_drag_and_drop()
+</code></pre>
+                    </section>                                
+                </section> <!-- openlayers r package end -->
+                
                 <!-- Shiny -->
                 <section>
 
