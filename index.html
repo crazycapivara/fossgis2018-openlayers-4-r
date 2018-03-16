@@ -146,8 +146,12 @@ HTMLWidgets.widget({
                         <h1>RMarkdown</h1>
                         <p><a href="https://rmarkdown.rstudio.com">https://rmarkdown.rstudio.com</a></p>
                         <!--<img src="images/ol-markdown-in-rstudio.png">-->
-                        <img src="images/rmarkdown.png" height="300">
+                        <img src="images/rmarkdown-logo.png" height="300">
                         <p>Gallery: <a href="https://rmarkdown.rstudio.com/gallery.html">https://rmarkdown.rstudio.com/gallery.html</a></p>
+                    </section>
+                    <section>
+                        <h2>Output formats</h2>
+                        <p>...</p>
                     </section>
                     <section>
                         <h2>Example 1</h2>
@@ -157,13 +161,51 @@ HTMLWidgets.widget({
                         <h2>Example 2</h2>
                         <img src="images/rmarkdown-dashboards.png">
                     </section>
+                </section> <!-- Rmarkdown end -->
+
+                <!-- Shiny -->
+                <section>
+                    <section>
+                        <h1>Shiny</h1>
+                        <p><a href="https://shiny.rstudio.com/">https://shiny.rstudio.com/</a></p>
+                        <img src="images/shiny-logo.png" height="300">
+                        <p>Gallery: <a href="https://shiny.rstudio.com/gallery/">https://shiny.rstudio.com/gallery/</a></p>
+                    </section>
+                    <section>
+                        <h2>Controller</h2>
+<pre><code data-trim class="r">
+controller <- function(input, output) {
+    output$distPlot <- renderPlot({
+        hist(rnorm(input$obs),
+             col = 'darkgray',
+             border = 'white')
+    })
+}
+</code></pre>
+                    </section>
+                    <section>
+                        <h2>View</h2>
+<pre><code data-trim class="r">
+view <- fluidPage(
+    sidebarLayout(
+        sidebarPanel(
+            sliderInput("obs", "Number of observations:", min = 10, max = 500, value = 100)
+        ),
+        mainPanel(plotOutput("distPlot"))
+    )
+)
+
+# Run the application 
+shinyApp(view, controller)
+</code></pre>
+                    </section> <!-- Shiny end -->
                 </section>
 
                 <!-- magrittr -->
                 <section>
                     <section>
                         <h1>Magrittr</h1>
-                        <img src="images/magrittr.png" height="400">
+                        <img src="images/magrittr.png" height="300">
                     </section>
                     <section>
                         <h2>Usage</h2>
@@ -199,11 +241,6 @@ HTMLWidgets.widget({
 </code></pre>
                     </section>                                
                 </section> <!-- openlayers r package end -->
-                
-                <!-- Shiny -->
-                <section>
-
-                </section>
                 
                 <!-- RStudio -->
                 <section>
