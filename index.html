@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <!--<link href="https://fonts.googleapis.com/css?family=PT+Mono|Open+Sans+Condensed:300|PT+Sans|Ubuntu:300|Vollkorn" rel="stylesheet">-->
+
+		<title>OpenLayers 4 R</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/bender.css">
+        <!--<link rel="stylesheet" href="lib/font/pt-mono/pt-mono.css">-->
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <!-- title -->
+				<section>
+                    <h1>OpenLayers 4 R</h1>
+                    <img src="images/r-logo.png" height="200">
+                    <img src="images/ol-logo.png" height="200">
+                    <!--<img src="images/docker-contributors.png" height="300" style="_border: 2px solid green; border-radius: 10px;">-->
+                    <h2>Seamlessly brige R and OpenLayersjs</h2>
+                    <p>StefanKüthe@FOSSGIS 2018</p>
+                </section> <!-- title end -->
+                <!-- whatever -->
+                <section>
+                    <section>
+                        <h1>OpenLayers 4 R</h1>
+                    </section>
+                    <section>
+                        <h2>It´s easy to install</h2>
+<pre><code data-trim class="r">
+> require("devtools")
+
+> install_github("crazycapivara/openlayers")
+</code></pre>       
+                    </section>
+                    <section>
+                        <h2>And fun to use</h2>
+<pre><code data-trim class="r">
+> require("geojsonio")
+        
+> ol() %>%
+     add_stamen_tiles() %>%
+     add_features(us_cities) %>%
+     add_drag_and_drop()
+</code></pre>
+                    </section>                                
+                    
+                </section> <!-- whatever end -->
+                <!-- The end -->
+                <section>
+                    <section>
+                        <h1>The End</h1>
+                    </section>
+                    <section>
+                        <h1>Hey ho</h1>
+                        <p>Stefan Küthe<br>
+                        stefan.kuethe@manserv.de</p>
+                        <ul>
+                            <li>dockerhub:<br>
+                                <a href="https://hub.docker.com/r/crazycapivara">https://hub.docker.com/r/crazycapivara</a></li>
+                            <li>github:<br>
+                                <a href="https://github.com/crazycapivara">https://github.com/crazycapivara</a></li>
+                            <li><a href="https://github.com/crazycapivara/openlayers">openlayers 4 R (code)</a></li>
+                        </ul>
+                    </section>
+                </section> <!-- The end end -->
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+                slideNumber: true,
+                help: true,
+                transition: 'none',
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
