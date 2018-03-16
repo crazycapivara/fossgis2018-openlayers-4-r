@@ -60,8 +60,137 @@
      add_drag_and_drop()
 </code></pre>
                     </section>                                
-                    
                 </section> <!-- whatever end -->
+                <!-- htmlwidgets for R -->
+                <section>
+                    <section>
+                        <h1>htmlwidgets for R</h1>
+                        <p><a href="https://www.htmlwidgets.org/" target="_blank">https://www.htmlwidgets.org/</a></p>
+                        <blockquote>
+                            <h3>&ldquo;Bring the best of JavaScript data visualization to R&ldquo;</h3>
+                        </blockquote>
+                    </section>
+                    <section>
+                        <h2>Features</h2>
+                        <blockquote>
+                            <p>&ldquo;Use JavaScript visualization libraries <span class="doption2">at the R console</span>, just like plots&ldquo;</p>
+                            <p class="fragment">&ldquo;Embed widgets in <span class="doption2">R Markdown</span> documents and <span class="doption2">Shiny</span> web applications&ldquo;</p>
+                            <p class="fragment">&ldquo;<span class="doption2">Develop new widgets</span> using a framework that seamlessly bridges R and JavaScript&ldquo;</p>
+                        </blockquote>
+                    </section>
+                    <section>
+                        <h2>Deploy new widgets</h2>
+                        <h3>Project structure</h3>
+<pre><code data-trim class="bash">
+R/
+| ol.R
+        
+inst/
+|-- htmlwidgets/
+|   |-- ol.js
+|   |-- ol.yaml
+|   |-- lib/
+|   |   |-- openlayers-4.6.4/
+|   |   |   |-- ol.min.js
+|   |   |   |-- ol.css
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>Dependencies</h3>
+<pre><code data-trim class="yaml">
+# ol.yaml
+dependencies:
+   - name: ol
+     version: 4.6.4
+     src: "htmlwidgets/lib/openlayers-4.6.4"
+     script: ol.js
+     stylesheet: ol.css
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>R binding</h3>
+                        <p>(R function that invokes the widget)</p>
+<pre><code data-trim class="r">
+# ol.R
+#' @import htmlwidgets
+#' @export
+ol <- function(width = "100%", height = NULL, elementId = NULL, options = ol_options()) {
+        
+    # forward options using x
+    x <- list(calls = list(), options = options)
+        
+    # create widget
+    htmlwidgets::createWidget(
+        'ol',
+        structure(x),
+        width = width,
+        height = height,
+        package = 'openlayers',
+        elementId = elementId
+    )
+}       
+</code></pre>
+                    </section>
+                    <section>
+                        <h3>JavaScript binding</h3>
+<pre><code data-trim class="javascript">
+// ol(-bindings).js
+HTMLWidgets.widget({
+    name: 'ol',
+    type: 'output',
+        
+    factory: function(el, width, height) {
+        // ...
+        
+        return {
+            renderValue: function(x) {
+                // create map object
+                map = new ol.Map({
+                    target: el.id
+                )};
+            }
+        };
+    }
+});
+</code></pre>                        
+                    </section>
+                    <section>
+                        <h3>Call widget from R</h3>
+<pre><code data-trim class="r">
+> library(openlayers)
+
+> ol_widget <- ol()
+</code></pre>
+                    </section>
+                </section> <!-- htmlwidgets for R end -->
+                <!-- magrittr -->
+                <section>
+                    <section>
+                        <h1>Magrittr</h1>
+                        <img src="images/magrittr.png" height="400">
+                    </section>
+                    <section>
+                        <h2>Usage</h2>
+                        <p>The operators pipe their left-hand side values forward into expressions that appear on the right-hand side.</p>
+                        <p><code class="doption2">f(x)</code> can be repaced with<br>
+                            <code class="doption2">x %>% f()</code>,<br>
+                            where <code class="doption2">%>%</code> is the (main) pipe-operator.</p>
+                    </section>  
+                </section>
+                <!-- Rmarkdown -->
+                <section>
+                    <h1>RMarkdown</h1>
+                    <img src="images/ol-markdown-in-rstudio.png">
+                </section>
+                <!-- Shiny -->
+                <section>
+
+                </section>
+                
+                <!-- RStudio -->
+                <section>
+
+                </section>
                 <!-- The end -->
                 <section>
                     <section>
