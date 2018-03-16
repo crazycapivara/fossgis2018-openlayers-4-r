@@ -253,6 +253,7 @@ shinyApp(view, controller)
                             <li class="fragment">styles</li>
                             <li class="fragment"><span class="doption">controls:</span> layer switcher, overview map, ...</li>
                             <li class="fragment"><span class="doption">interactions:</span> select, drag and drop, click, ...</li>
+                            <li class="fragment">Shiny integration (get feature infos)</li>
                         </ul>
                     </section>
                     <!-- Getting Started -->
@@ -281,6 +282,84 @@ shinyApp(view, controller)
                     </section>                 
                 </section> <!-- openlayers r package end -->
                 
+                <!-- OL 4 R in detail -->
+                <section>
+                    <section>
+                        <h1>OL 4 R in detail</h1>
+                    </section>
+                    <section>
+                        <h2>Map options</h2>
+<pre><code data-trim class="r">
+map_options <- ol_options(
+    max_zoom = 20,
+    zoom_control = FALSE)
+
+map <- ol(options = map_options)
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Tiles</h2>
+<pre><code data-trim class="r">
+ol() %>%
+    add_stamen_tiles("watercolor") %>%
+    add_stamen_tiles(
+        layer = "terrain-labels",
+        options = layer_options(max_resolution = 13000)) %>%
+    set_view(9.5, 51.31667, zoom = 4) %>%
+    add_overview_map()
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Vector tiles</h2>
+<pre><code data-trim class="r">
+# mapbox
+key <- "your_access_token"
+mapbox <- paste0(
+    "https://{a-d}.tiles.mapbox.com/v4/",
+    "mapbox.mapbox-streets-v7/",
+    "{z}/{x}/{y}.vector.pbf",
+    "?access_token=", key)
+
+ol() %>%
+    add_vector_tiles(mapbox, "Add attribution here") %>%
+    set_view(zoom = 14)
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Styles</h2>
+<pre><code data-trim class="r">
+stroke <- stroke_style(color = "green", width = 2)
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+fill <- fill_style(color = "red")
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+circle <- circle_style(
+    stroke = stroke, fill = fill, radius = 10)
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+marker <- icon_style(icon_color = "blue")
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+text <- text_style(
+    property = "Name", scale = 2, color = "black")
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+# combine styles (e. g. when drawing polygons)
+style <- stroke + fill                   
+</code></pre>
+                    </section>
+
+                </section> <!-- OL 4 R in detail end -->
+
                 <!-- The end -->
                 <section>
                     <section>
@@ -295,7 +374,7 @@ shinyApp(view, controller)
                                 <a href="https://hub.docker.com/r/crazycapivara">https://hub.docker.com/r/crazycapivara</a></li>
                             <li>github:<br>
                                 <a href="https://github.com/crazycapivara">https://github.com/crazycapivara</a></li>
-                            <li><a href="https://github.com/crazycapivara/openlayers">openlayers 4 R (code)</a></li>
+                            <li><a href="https://github.com/crazycapivara/openlayers">openlayers 4 R (source on github)</a></li>
                         </ul>
                     </section>
                 </section> <!-- The end end -->
