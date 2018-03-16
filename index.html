@@ -135,7 +135,7 @@ HTMLWidgets.widget({
 <pre><code data-trim class="r">
 > library(openlayers)
 
-> ol_widget <- ol()
+> map_widget <- ol()
 </code></pre>
                     </section>
                 </section> <!-- htmlwidgets for R end -->
@@ -176,9 +176,11 @@ HTMLWidgets.widget({
 <pre><code data-trim class="r">
 controller <- function(input, output) {
     output$distPlot <- renderPlot({
-        hist(rnorm(input$obs),
-             col = 'darkgray',
-             border = 'white')
+        hist(
+            x = rnorm(input$obs),
+            col = 'darkgray',
+            border = 'white'
+        )
     })
 }
 </code></pre>
@@ -189,7 +191,10 @@ controller <- function(input, output) {
 view <- fluidPage(
     sidebarLayout(
         sidebarPanel(
-            sliderInput("obs", "Number of observations:", min = 10, max = 500, value = 100)
+            sliderInput(
+                inputId = "obs", label = "Number of observations:",
+                min = 10, max = 500, value = 100
+            )     
         ),
         mainPanel(plotOutput("distPlot"))
     )
@@ -355,6 +360,37 @@ text <- text_style(
 <pre class="fragment"><code data-trim class="r">
 # combine styles (e. g. when drawing polygons)
 style <- stroke + fill                   
+</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Simple features 1 (Points)</h2>
+<pre><code data-trim class="r">
+# Points
+require("geojsonio")
+cities <- us_cities[1:10, ]
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+# Add as markers
+ol() %>%
+    add_stamen_tiles() %>%
+    add_features(
+        cities, style = icon_style(), popup = cities$name)
+</code></pre>
+
+<pre class="fragment"><code data-trim class="r">
+# Add as circles
+style = circle_style(radius = sqrt(cities$pop)/10)
+    + text_style(property = "pop")
+
+ol() %>%
+    add_stamen_tiles() %>%
+    add_features(cities, style = style)
+</code></pre>
+    
+<pre class="fragment"><code data-trim class="r">
+# Polygons
 </code></pre>
                     </section>
 
