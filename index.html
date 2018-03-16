@@ -239,13 +239,33 @@ shinyApp(view, controller)
      add_features(us_cities) %>%
      add_drag_and_drop()
 </code></pre>
-                    </section>                                
+                    </section>
+                    <!-- Getting Started -->
+                    <section>
+                        <h2>Getting Started</h2>
+                    </section>
+                    <section>
+                        <h4>Create a map widget</h4>
+                        <pre><code class="r">map <- ol()</code></pre>
+                        <div class="fragment">
+                            <h4>Add some tiles</h4>
+                            <pre><code class="r">map %<>% add_stamen_tiles()</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <h4>Add some features</h4>
+                            <pre><code class="r">map %<>% add_features(us_cities, popup = us_cities$name)</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <h4>Add some controls</h4>
+                            <pre><code class="r">map %<>% add_overview_map()</code></pre>
+                        </div>
+                        <div class="fragment">
+                            <h4>Show map</h4>
+                            <pre><code class="r">map</code></pre>
+                        </div>
+                    </section>                 
                 </section> <!-- openlayers r package end -->
                 
-                <!-- RStudio -->
-                <section>
-
-                </section>
                 <!-- The end -->
                 <section>
                     <section>
