@@ -32,14 +32,14 @@
                     <h1>OpenLayers 4 R</h1>
                     <img src="images/ol-logo.png" height="200">
                     <img src="images/r-lang.png" height="200">
-                    <h2>Seamlessly brige R and OpenLayers</h2>
+                    <h2>Seamlessly bridge R and OpenLayers</h2>
                     <p>StefanKüthe@FOSSGIS 2018</p>
                 </section> <!-- title end -->
                 
                 <!-- htmlwidgets for R -->
                 <section>
                     <section>
-                        <h1>htmlwidgets for R</h1>
+                        <h1>Htmlwidgets for R</h1>
                         <p><a href="https://www.htmlwidgets.org/" target="_blank">https://www.htmlwidgets.org/</a></p>
                         <blockquote>
                             <h3>&ldquo;Bring the best of JavaScript data visualization to R&ldquo;</h3>
@@ -47,22 +47,20 @@
                     </section>
                     <section>
                         <h2>Features</h2>
-                        <blockquote>
-                            <p>&ldquo;Use JavaScript visualization libraries <span class="doption2">at the R console</span>, just like plots&ldquo;</p>
-                            <p class="fragment">&ldquo;Embed widgets in <span class="doption2">R Markdown</span> documents and <span class="doption2">Shiny</span> web applications&ldquo;</p>
-                            <p class="fragment">&ldquo;<span class="doption2">Develop new widgets</span> using a framework that seamlessly bridges R and JavaScript&ldquo;</p>
-                        </blockquote>
+                        <blockquote>&ldquo;Use JavaScript visualization libraries <span class="doption2">at the R console</span>, just like plots&ldquo;</blockquote>
+                        <blockquote class="fragment">&ldquo;Embed widgets in <span class="doption2">R Markdown</span> documents and <span class="doption2">Shiny</span> web applications&ldquo;</blockquote>
+                        <blockquote class="fragment">&ldquo;<span class="doption2">Develop new widgets</span> using a framework that seamlessly bridges R and JavaScript&ldquo;</blockquote>
                     </section>
                     <section>
                         <h2>Deploy new widgets</h2>
                         <h3>Project structure</h3>
 <pre><code data-trim class="bash">
 R/
-| ol.R
+| ol.R # R binding
         
 inst/
 |-- htmlwidgets/
-|   |-- ol.js
+|   |-- ol(-bindings).js # JavaScript binding
 |   |-- ol.yaml
 |   |-- lib/
 |   |   |-- openlayers-4.6.4/
@@ -78,7 +76,7 @@ dependencies:
    - name: ol
      version: 4.6.4
      src: "htmlwidgets/lib/openlayers-4.6.4"
-     script: ol.js
+     script: ol.min.js
      stylesheet: ol.css
 </code></pre>
                     </section>
@@ -213,8 +211,9 @@ shinyApp(view, controller)
                     </section>
                     <section>
                         <h2>Usage</h2>
-                        <p>The operators pipe their left-hand side values forward into expressions that appear on the right-hand side.</p>
-                        <p><code class="doption2">f(x)</code> can be repaced with<br>
+                        <p>The operators <span class="doption2">pipe</span> their left-hand side values forward <span class="doption2">into expressions</span>
+                            that appear <span class="doption2">on the right-hand side</span>.</p>
+                        <p class="fragment"><code class="doption2">f(x)</code> can be repaced with<br>
                             <code class="doption2">x %>% f()</code>,<br>
                             where <code class="doption2">%>%</code> is the (main) pipe-operator.</p>
                     </section>  
@@ -354,7 +353,7 @@ marker <- icon_style(icon_color = "blue")
 
 <pre class="fragment"><code data-trim class="r">
 text <- text_style(
-    property = "Name", scale = 2, color = "black")
+    property = "name", scale = 2, color = "black")
 </code></pre>
 
 <pre class="fragment"><code data-trim class="r">
